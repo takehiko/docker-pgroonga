@@ -44,6 +44,8 @@ RUN apk add --update --no-cache build-base openssl \
  && make install \
  && cd .. \
 # Clean up
+ && apk del build-base \
+ && apk add --update --no-cache libstdc++ \
  && rm -rf \
     mecab-${MECAB_VERSION}* \
     mecab-ipadic-${IPADIC_VERSION}* \
