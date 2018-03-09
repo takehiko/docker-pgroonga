@@ -1,0 +1,71 @@
+#!/bin/bash
+
+# 要docker, psql
+
+# http://d.hatena.ne.jp/takehikom/20180130/1517314577
+
+shopt -s expand_aliases
+set -xe
+
+HPORT=45432
+alias pgr1="psql -h 127.0.0.1 -p $HPORT -U postgres"
+alias pgr2="psql -h 127.0.0.1 -p $HPORT -U postgres -d pgtest"
+
+echo ">> test 1: "
+docker run --rm -d -p $HPORT:5432 --name pgr takehiko/pgroonga
+sleep 5
+pgr1 -c "CREATE DATABASE pgtest ENCODING 'UTF8'"
+pgr2 -c "CREATE EXTENSION pgroonga"
+pgr2 -c "CREATE TABLE diaries (\
+ diary_id serial PRIMARY KEY,\
+ uri text NOT NULL,\
+ title text NOT NULL)"
+pgr2 -c "CREATE INDEX diary_title_pgidx \
+ ON diaries USING pgroonga (title) WITH (tokenizer='TokenMecab')"
+pgr2 -c "INSERT INTO diaries(uri, title) \
+ VALUES('http://d.hatena.ne.jp/takehikom/20170317/1489702050',\
+ 'Windows 10アップデート後にはregedit～0.5秒後にフォーカス，CpasLockはCtrlに')"
+pgr2 -c "SELECT * FROM diaries WHERE title &@ 'フォーカス'" | cat
+pgr2 -c "SELECT * FROM diaries WHERE title &@ 'カス'" | cat
+if [ $(pgr2 -t -c "SELECT COUNT(*) FROM diaries WHERE title &@ 'フォーカス'") -eq 1 ]
+then
+    echo "test 1-1:ok"
+else
+    echo "test 1-1:ng"
+fi
+if [ $(pgr2 -t -c "SELECT COUNT(*) FROM diaries WHERE title &@ 'カス'") -eq 0 ]
+then
+    echo "test 1-2:ok"
+else
+    echo "test 1-2:ng"
+fi
+docker stop pgr
+
+echo ">> test 2: "
+docker run --rm -d -p $HPORT:5432 --name pgr takehiko/pgroonga
+sleep 5
+pgr1 -c "CREATE DATABASE pgtest ENCODING 'UTF8'"
+pgr2 -c "CREATE EXTENSION pgroonga"
+pgr2 -c "CREATE TABLE diaries (\
+ diary_id serial PRIMARY KEY,\
+ uri text NOT NULL,\
+ title text NOT NULL)"
+pgr2 -c "CREATE INDEX diary_title_pgidx ON diaries USING pgroonga (title)"
+pgr2 -c "INSERT INTO diaries(uri, title) \
+ VALUES('http://d.hatena.ne.jp/takehikom/20170317/1489702050',\
+ 'Windows 10アップデート後にはregedit～0.5秒後にフォーカス，CpasLockはCtrlに')"
+pgr2 -c "SELECT * FROM diaries WHERE title &@ 'フォーカス'" | cat
+pgr2 -c "SELECT * FROM diaries WHERE title &@ 'カス'" | cat
+if [ $(pgr2 -t -c "SELECT COUNT(*) FROM diaries WHERE title &@ 'フォーカス'") -eq 1 ]
+then
+    echo "test 2-1:ok"
+else
+    echo "test 2-1:ng"
+fi
+if [ $(pgr2 -t -c "SELECT COUNT(*) FROM diaries WHERE title &@ 'カス'") -eq 1 ]
+then
+    echo "test 2-2:ok"
+else
+    echo "test 2-2:ng"
+fi
+docker stop pgr
