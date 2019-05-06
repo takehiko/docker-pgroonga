@@ -6,7 +6,7 @@ ENV LANG=ja_JP.UTF-8 \
     IPADIC_VERSION=2.7.0-20070801 \
     mecab_url="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE" \
     ipadic_url="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM" \
-    GROONGA_VERSION=9.0.1 \
+    GROONGA_VERSION=9.0.2 \
     PGROONGA_VERSION=2.1.8
 
 WORKDIR /root
@@ -41,6 +41,7 @@ RUN apk add --update --no-cache build-base pkgconf openssl \
  && wget https://packages.groonga.org/source/pgroonga/pgroonga-${PGROONGA_VERSION}.tar.gz \
  && tar xvf pgroonga-${PGROONGA_VERSION}.tar.gz \
  && cd pgroonga-${PGROONGA_VERSION} \
+ && sed -i -e '6i#include <stdbool.h>' src/pgroonga.h \
  && make \
  && make install \
  && cd .. \
