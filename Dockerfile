@@ -6,7 +6,7 @@ ENV LANG=ja_JP.UTF-8 \
     IPADIC_VERSION=2.7.0-20070801 \
     mecab_url="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE" \
     ipadic_url="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM" \
-    GROONGA_VERSION=9.0.6 \
+    GROONGA_VERSION=9.0.7 \
     PGROONGA_VERSION=2.2.1
 
 WORKDIR /root
