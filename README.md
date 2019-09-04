@@ -10,13 +10,13 @@ A Docker image for PGroonga, including:
 ## Build
 
 ```sh
-docker build -t takehiko/pgroonga .
+docker build -t takehiko/pgroonga:pg-10 .
 ```
 
 ## Run
 
 ```sh
-docker run --rm -d -p 45432:5432 --name pgr takehiko/pgroonga
+docker run --rm -d -p 45432:5432 --name pgr takehiko/pgroonga:pg-10
 ```
 
 ## See also

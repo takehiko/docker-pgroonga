@@ -12,7 +12,7 @@ alias pgr1="psql -h 127.0.0.1 -p $HPORT -U postgres"
 alias pgr2="psql -h 127.0.0.1 -p $HPORT -U postgres -d pgtest"
 
 echo ">> test 1: "
-docker run --rm -d -p $HPORT:5432 --name pgr takehiko/pgroonga
+docker run --rm -d -p $HPORT:5432 --name pgr takehiko/pgroonga:pg-10
 sleep 5
 pgr1 -c "CREATE DATABASE pgtest ENCODING 'UTF8'"
 pgr2 -c "CREATE EXTENSION pgroonga"
@@ -42,7 +42,7 @@ fi
 docker stop pgr
 
 echo ">> test 2: "
-docker run --rm -d -p $HPORT:5432 --name pgr takehiko/pgroonga
+docker run --rm -d -p $HPORT:5432 --name pgr takehiko/pgroonga:pg-10
 sleep 5
 pgr1 -c "CREATE DATABASE pgtest ENCODING 'UTF8'"
 pgr2 -c "CREATE EXTENSION pgroonga"
