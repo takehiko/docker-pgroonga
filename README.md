@@ -10,13 +10,13 @@ A Docker image for PGroonga, including:
 ## Build
 
 ```sh
-docker build -t takehiko/pgroonga .
+docker build -t takehiko/pgroonga:pg-9 .
 ```
 
 ## Run
 
 ```sh
-docker run --rm -d -p 45432:5432 --name pgr takehiko/pgroonga
+docker run --rm -d -p 45432:5432 --name pgr takehiko/pgroonga:pg-9
 ```
 
 ## See also
@@ -27,3 +27,4 @@ docker run --rm -d -p 45432:5432 --name pgr takehiko/pgroonga
 - https://hub.docker.com/r/iquiw/pgroonga-on-postgres/
 - [Alpine LinuxでMeCab with NEologd](https://qiita.com/nownabe/items/4171776aec1f05de9f28)
 - [DockerでPGroonga - わさっき](http://d.hatena.ne.jp/takehikom/20180130/1517314577)
+- https://cloud.docker.com/repository/docker/takehiko/pgroonga
