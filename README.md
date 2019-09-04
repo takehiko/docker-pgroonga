@@ -19,7 +19,7 @@ docker build -t takehiko/pgroonga .
 docker run --rm -d -p 45432:5432 --name pgr takehiko/pgroonga
 ```
 
-## If you need an Docker image including PostgreSQL 9.6
+## If you need a Docker image including PostgreSQL 9.6
 
 ```sh
 git checkout pg-9
