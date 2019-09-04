@@ -1,4 +1,4 @@
-FROM postgres:9-alpine
+FROM postgres:11-alpine
 LABEL maintainer="Takehiko Murakawa <takehiko@sys.wakayama-u.ac.jp>"
 
 ENV LANG=ja_JP.UTF-8 \
