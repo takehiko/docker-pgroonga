@@ -29,10 +29,8 @@ docker run --rm -d -p 45432:5432 --name pgr takehiko/pgroonga:pg-9
 
 ## See also
 
-- https://hub.docker.com/_/postgres/
 - http://groonga.org/
 - https://pgroonga.github.io/
-- https://hub.docker.com/r/iquiw/pgroonga-on-postgres/
-- [Alpine LinuxでMeCab with NEologd](https://qiita.com/nownabe/items/4171776aec1f05de9f28)
-- [DockerでPGroonga - わさっき](http://d.hatena.ne.jp/takehikom/20180130/1517314577)
-- https://cloud.docker.com/repository/docker/takehiko/pgroonga
+- https://hub.docker.com/_/postgres/
+- https://hub.docker.com/r/takehiko/pgroonga/
+- [DockerでPGroonga - わさっき](https://takehikom.hateblo.jp/entry/20180130/1517314577)
