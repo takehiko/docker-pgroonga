@@ -12,7 +12,7 @@ ENV LANG=ja_JP.UTF-8 \
 WORKDIR /root
 
 # Install build tools
-RUN apk add --update --no-cache build-base clang clang-dev pkgconf openssl \
+RUN apk add --update --no-cache build-base clang clang-dev llvm pkgconf openssl \
 # Install MeCab + IPADIC
  && wget -O mecab-${MECAB_VERSION}.tar.gz ${mecab_url} \
  && tar zxf mecab-${MECAB_VERSION}.tar.gz \
@@ -46,7 +46,7 @@ RUN apk add --update --no-cache build-base clang clang-dev pkgconf openssl \
  && make install \
  && cd .. \
 # Clean up
- && apk del build-base pkgconf clang clang-dev \
+ && apk del build-base pkgconf clang clang-dev llvm \
  && apk add --update --no-cache libstdc++ \
  && rm -rf \
     mecab-${MECAB_VERSION}* \
