@@ -3,7 +3,7 @@
 A Docker image for PGroonga, including:
 
 - PGroonga 2.2.5
-- Groonga 9.1.2
+- Groonga 10.0.1
 - MeCab 0.996 + IPADIC 2.7.0-20070801
 - PostgreSQL 10 / Alpine Linux
 
@@ -21,9 +21,8 @@ docker run --rm -d -p 45432:5432 --name pgr takehiko/pgroonga:pg-10
 
 ## See also
 
-- https://hub.docker.com/_/postgres/
 - http://groonga.org/
 - https://pgroonga.github.io/
-- https://hub.docker.com/r/iquiw/pgroonga-on-postgres/
-- [Alpine LinuxでMeCab with NEologd](https://qiita.com/nownabe/items/4171776aec1f05de9f28)
-- [DockerでPGroonga - わさっき](http://d.hatena.ne.jp/takehikom/20180130/1517314577)
+- https://hub.docker.com/_/postgres/
+- https://hub.docker.com/r/takehiko/pgroonga/
+- [DockerでPGroonga - わさっき](https://takehikom.hateblo.jp/entry/20180130/1517314577)
