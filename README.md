@@ -16,7 +16,7 @@ docker build -t takehiko/pgroonga .
 ## Run
 
 ```sh
-docker run --rm -d -p 45432:5432 -e POSTGRES_HOST_AUTH_METHOD=trust --name pgr takehiko/pgroonga
+docker run --rm -d -p 45432:5432 --name pgr takehiko/pgroonga
 ```
 
 ## If you need a Docker image including PostgreSQL 9.6
