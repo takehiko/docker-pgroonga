@@ -5,18 +5,18 @@ A Docker image for PGroonga, including:
 - PGroonga 2.2.7
 - Groonga 10.0.8
 - MeCab 0.996 + IPADIC 2.7.0-20070801
-- PostgreSQL 12 / Alpine Linux
+- PostgreSQL 13 / Alpine Linux
 
 ## Build
 
 ```sh
-docker build -t takehiko/pgroonga .
+docker build -t takehiko/pgroonga:pg-13 .
 ```
 
 ## Run
 
 ```sh
-docker run --rm -d -p 45432:5432 --name pgr takehiko/pgroonga
+docker run --rm -d -p 45432:5432 --name pgr takehiko/pgroonga:pg-13
 ```
 
 ## If you need a Docker image including PostgreSQL 9.6
