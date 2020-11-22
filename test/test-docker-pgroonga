@@ -2,7 +2,25 @@
 
 # 要docker, psql
 
-# http://d.hatena.ne.jp/takehikom/20180130/1517314577
+# https://takehikom.hateblo.jp/entry/20180130/1517314577
+
+function print_ok () {
+    if [ -v DOCPGR_NOCOLOR ]
+    then
+        echo 'ok'
+    else
+        echo -e "\e[36mok\e[m"
+    fi
+}
+
+function print_ng () {
+    if [ -v DOCPGR_NOCOLOR ]
+    then
+        echo 'ng'
+    else
+        echo -e "\e[33mng\e[m"
+    fi
+}
 
 shopt -s expand_aliases
 set -xe
@@ -29,15 +47,15 @@ pgr2 -c "SELECT * FROM diaries WHERE title &@ 'フォーカス'" | cat
 pgr2 -c "SELECT * FROM diaries WHERE title &@ 'カス'" | cat
 if [ $(pgr2 -t -c "SELECT COUNT(*) FROM diaries WHERE title &@ 'フォーカス'") -eq 1 ]
 then
-    echo "test 1-1:ok"
+    echo "test 1-1:$(print_ok)"
 else
-    echo "test 1-1:ng"
+    echo "test 1-1:$(print_ng)"
 fi
 if [ $(pgr2 -t -c "SELECT COUNT(*) FROM diaries WHERE title &@ 'カス'") -eq 0 ]
 then
-    echo "test 1-2:ok"
+    echo "test 1-2:$(print_ok)"
 else
-    echo "test 1-2:ng"
+    echo "test 1-2:$(print_ng)"
 fi
 docker stop pgr
 
@@ -58,14 +76,14 @@ pgr2 -c "SELECT * FROM diaries WHERE title &@ 'フォーカス'" | cat
 pgr2 -c "SELECT * FROM diaries WHERE title &@ 'カス'" | cat
 if [ $(pgr2 -t -c "SELECT COUNT(*) FROM diaries WHERE title &@ 'フォーカス'") -eq 1 ]
 then
-    echo "test 2-1:ok"
+    echo "test 2-1:$(print_ok)"
 else
-    echo "test 2-1:ng"
+    echo "test 2-1:$(print_ng)"
 fi
 if [ $(pgr2 -t -c "SELECT COUNT(*) FROM diaries WHERE title &@ 'カス'") -eq 1 ]
 then
-    echo "test 2-2:ok"
+    echo "test 2-2:$(print_ok)"
 else
-    echo "test 2-2:ng"
+    echo "test 2-2:$(print_ng)"
 fi
 docker stop pgr
