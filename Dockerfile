@@ -7,8 +7,8 @@ ENV LANG=ja_JP.UTF-8 \
     mecab_url="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7cENtOXlicTFaRUE" \
     ipadic_url="https://drive.google.com/uc?export=download&id=0B4y35FiV1wh7MWVlSDBCSXZMTXM" \
     POSTGRES_HOST_AUTH_METHOD=trust \
-    GROONGA_VERSION=11.0.1 \
-    PGROONGA_VERSION=2.2.8
+    GROONGA_VERSION=11.0.2 \
+    PGROONGA_VERSION=2.2.9
 
 WORKDIR /root
 
