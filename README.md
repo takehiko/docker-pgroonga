@@ -2,8 +2,8 @@
 
 A Docker image for PGroonga, including:
 
-- PGroonga 2.3.4
-- Groonga 12.0.1
+- PGroonga 2.3.8
+- Groonga 12.0.6
 - MeCab 0.996 + IPADIC 2.7.0-20070801
 - PostgreSQL 10 / Alpine Linux
 
